@@ -1,115 +1,101 @@
-// import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Avatar,
-  Button,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  Typography,
-  Container,
-  Paper,
-  Grid2,
-} from '@mui/material';
-// import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import { Avatar, CssBaseline, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
+import { useState } from 'react';
+import '../CSS/signup.css';
+
 const Signup = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Add signup logic here
-    console.log('Signup form submitted');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log(formData, 'Data');
+    try {
+      const response = await fetch('http://localhost:8080/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      // console.log(formData, 'Data');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      // console.log(result);
+      alert('User registered successfully!');
+    } catch (error) {
+      console.error('Error during signup:', error);
+      alert('Signup failed. Please try again.');
+    }
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper
-        elevation={3}
+    <div className="signup-container">
+      <CssBaseline />
+      <Box
         sx={{
-          marginTop: 8,
-          padding: 4,
+          marginTop: 1,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          borderRadius: 2,
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign Up
-        </Typography>
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            width: '100%',
-            marginTop: '1rem',
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <Grid2 container spacing={2} sx={{ mt: 1, maxWidth: '100%' }}>
-            <Grid2 xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="name"
-                label="Full Name"
-                name="name"
-                autoComplete="name"
-              />
-            </Grid2>
-            <Grid2 xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid2>
-            <Grid2 xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-              />
-            </Grid2>
-            <Grid2 xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive updates and promotions via email."
-              />
-            </Grid2>
-          </Grid2>
-        </form>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          sx={{ mt: 3, mb: 2 }}
-        >
-          Sign Up
-        </Button>
-        <Grid2 container justifyContent="flex-end">
-          <Grid2>
-            <Link to="/login" variant="body2">
-              Already have an account? Sign in
-            </Link>
-          </Grid2>
-        </Grid2>
-      </Paper>
-    </Container>
+      </Box>
+      <h2>Signup</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
   );
 };
 

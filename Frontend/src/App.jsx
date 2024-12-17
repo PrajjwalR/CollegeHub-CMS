@@ -10,10 +10,10 @@ import NoMatch from './components/NoMatch';
 function App() {
   return (
     <Router>
-      <Navbar></Navbar>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Home></Home>} />
+        <Route path="/about" element={<About></About>} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
