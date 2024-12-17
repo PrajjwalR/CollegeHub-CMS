@@ -1,34 +1,78 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../features/authSlice';
 import '../CSS/Navbar.css';
 
 const Navbar = () => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <nav className="navbar">
       <h2>
-        <Link to="/" className="main-logo">
+        <NavLink to="/" className="main-logo">
           CollegeHUB
-        </Link>
+        </NavLink>
       </h2>
       <div className="nav-links-container">
         <ul className="nav-links">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              About
+            </NavLink>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              Contact
+            </NavLink>
           </li>
         </ul>
-        <ul className="auth-links">
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/signup">Signup</Link>
-          </li>
-        </ul>
+
+        {isLoggedIn ? (
+          <>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          <>
+            <ul className="auth-links">
+              <li>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/signup"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                >
+                  Signup
+                </NavLink>
+              </li>
+            </ul>
+          </>
+        )}
       </div>
     </nav>
   );

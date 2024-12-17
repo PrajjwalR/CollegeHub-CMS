@@ -19,8 +19,8 @@ const ImageSlider = () => {
   const settings = {
     autoplay: true,
     autoplaySpeed: 2000,
-    arrows: false,
-    dots: false,
+    arrows: true,
+    dots: true,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
@@ -28,16 +28,11 @@ const ImageSlider = () => {
   };
 
   return (
-    <Box sx={{ width: '100%', height: 'auto', maxHeight: '500px' }}>
+    <Box sx={{ width: '100vw', height: '100vh' }}>
       <Slider {...settings}>
         {images.map((image, index) => (
-          <div key={index}>
-            <img
-              className="universityMain-images-slideshow"
-              src={image}
-              alt={`slide-${index}`}
-              style={{ width: '100%', height: 'auto', objectFit: 'fit' }}
-            />
+          <div key={index} className="slider-image-container">
+            <img src={image} alt={`slide-${index}`} className="slider-image" />
           </div>
         ))}
       </Slider>

@@ -6,6 +6,8 @@ import Contact from './components/Contact';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import NoMatch from './components/NoMatch';
+import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
@@ -17,6 +19,16 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NoMatch />} />
+        {/* Protected Route */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </Router>
