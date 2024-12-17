@@ -1,38 +1,36 @@
 // import React from 'react';
-import { Link } from 'react-router-dom';
-
-import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  // Link,
-  Grid2,
-  Box,
-  Typography,
-  Container,
-} from '@mui/material';
-
+import { Avatar, CssBaseline, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../features/authSlice';
+
+import '../CSS/Login.css';
 
 const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (email === 'test@example.com' && password === 'password') {
+      dispatch(login({ email }));
+      navigate('/dashboard'); // Redirect to the dashboard
+    } else {
+      alert('Invalid credentials');
+    }
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <form onSubmit={handleLogin}>
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 1,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -41,57 +39,28 @@ const Login = () => {
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Log in
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
-          <Grid2 container>
-            <Grid2 item xs>
-              <Link to="/" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid2>
-            <Grid2 item>
-              <Link to="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid2>
-          </Grid2>
-        </Box>
       </Box>
-    </Container>
+      <h2 className="login-heading">Login</h2>
+      <div>
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
+      <button type="submit">Login</button>
+    </form>
   );
 };
 

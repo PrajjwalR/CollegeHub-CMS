@@ -53,6 +53,10 @@
   transform: translateY(-2px);
 }
 
+.navbar ul li a.active {
+  color: #f1c40f; 
+  font-weight: bold;
+}
 .navbar ul li a::after {
   content: '';
   position: absolute;
@@ -64,7 +68,8 @@
   transition: width 0.3s ease;
 }
 
-.navbar ul li a:hover::after {
+.navbar ul li a:hover::after,
+.navbar ul li a.active::after {
   width: 100%;
 }
 

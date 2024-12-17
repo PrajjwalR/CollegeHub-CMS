@@ -8,11 +8,11 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.signup-container h2 {
+.signup-container .signup-heading {
   text-align: center;
   font-size: 28px;
   color: #333;
-  margin-bottom: 25px;
+  margin-bottom: 25px; 
 }
 
 .signup-container form div {
@@ -69,3 +69,5 @@
     padding: 20px;
   }
 }
+
+

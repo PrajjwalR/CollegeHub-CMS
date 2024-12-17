@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom';
 import { Avatar, CssBaseline, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { useState } from 'react';
 import '../CSS/signup.css';
-
 const Signup = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -61,7 +59,7 @@ const Signup = () => {
           <LockOutlinedIcon />
         </Avatar>
       </Box>
-      <h2>Signup</h2>
+      <h2 className="signup-heading">Signup</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
