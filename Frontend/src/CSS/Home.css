@@ -1,0 +1,23 @@
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+
+.main-container{
+    width: 100%;
+    background-color: aqua;
+
+    /* position: relative;
+    top: 0; */
+}
+
+.universityImg-container{
+    width: 100%;
+}
+
+.universityMain-img{
+    width: 100%;
+}
+
+.universityMain-images-slideshow{
+
+}
