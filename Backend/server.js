@@ -1,4 +1,9 @@
 const express = require('express')
+const session = require('express-session');
+const passport = require('passport');
+const authRoutes = require('./routes/auth');// Import your auth routes
+require('./config/passport')(passport); // Passport configuration
+const dashboardRoutes = require('./routes/dashboard.js'); // Import protected routes
 const connectDB = require('./config/db.js')
 const itemModel = require('./models/Item.js')
 const cors = require('cors')
@@ -10,7 +15,26 @@ const app = express()
 
 // Middleware
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
 app.use(cors())
+
+
+// Express session middleware
+app.use(
+  session({
+    secret: 'secretKey', // Replace with a secure key in production
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+// Initialize Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Use auth routes
+app.use('/auth', authRoutes);
+app.use('/dashboard', dashboardRoutes); // Mount protected routes
 
 connectDB()
 
