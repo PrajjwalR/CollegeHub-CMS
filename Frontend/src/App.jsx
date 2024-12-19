@@ -7,7 +7,8 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import NoMatch from './components/NoMatch';
 import ProtectedRoute from './components/ProtectedRoute';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard.jsx';
+import Profile from './components/Profile.jsx';
 
 function App() {
   return (
@@ -26,6 +27,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />
