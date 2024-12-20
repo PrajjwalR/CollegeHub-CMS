@@ -1,6 +1,6 @@
 import { Avatar, CssBaseline, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import '../CSS/signup.css';
 const Signup = () => {
@@ -9,6 +9,8 @@ const Signup = () => {
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,26 +23,34 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formData, 'Data');
+    // console.log('Form Data:', formData);
     try {
-      const response = await fetch('http://localhost:8080/signup', {
+      const response = await fetch('http://localhost:8080/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
-      // console.log(formData, 'Data');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      // console.log('Raw Response:', response);
+      // console.log('Response Status:', response.status);
 
       const result = await response.json();
-      // console.log(result);
+
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        console.error('Error Response Text:', errorText);
+        const errorData = await response.json();
+        console.error('Error Data:', errorData);
+        throw new Error(errorData.message || 'Signup failed');
+      }
+
+      console.log('Signup Success:', result);
       alert('User registered successfully!');
+      navigate('/login');
     } catch (error) {
       console.error('Error during signup:', error);
-      alert('Signup failed. Please try again.');
+      alert(error.message || 'Signup failed. Please try again.');
     }
   };
 

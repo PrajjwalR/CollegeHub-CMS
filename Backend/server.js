@@ -1,13 +1,14 @@
 const express = require('express')
 const session = require('express-session');
+const authRoutes = require('./routes/auth.js');// Importing auth routes
 const passport = require('passport');
-const authRoutes = require('./routes/auth');// Import your auth routes
-require('./config/passport')(passport); // Passport configuration
-const dashboardRoutes = require('./routes/dashboard.js'); // Import protected routes
+require('./config/passport');  // Passport configuration
+const dashboardRoutes = require('./routes/dashboard.js'); // Importing protected routes
 const connectDB = require('./config/db.js')
 const itemModel = require('./models/Item.js')
 const cors = require('cors')
 const User = require('./models/User.js')
+require('dotenv').config();
 const PORT = process.env.PORT || 8080 
 
 const app = express()
@@ -22,13 +23,13 @@ app.use(cors())
 // Express session middleware
 app.use(
   session({
-    secret: 'secretKey', // Replace with a secure key in production
+    secret: process.env.SESSION_SECRET, 
     resave: false,
     saveUninitialized: false,
   })
 );
 
-// Initialize Passport middleware
+// Initializing Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -38,7 +39,9 @@ app.use('/dashboard', dashboardRoutes); // Mount protected routes
 
 connectDB()
 
-app.post('/signup', async (req, res)=>{
+app.use('/', authRoutes);
+
+app.post('/register', async (req, res)=>{
     try{
       console.log('Received data:', req.body)
       const {name, email, password} = req.body

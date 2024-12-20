@@ -1,4 +1,3 @@
-// import React from 'react';
 import { Avatar, CssBaseline, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useState } from 'react';
@@ -11,16 +10,37 @@ import '../CSS/Login.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (email === 'test@example.com' && password === 'password') {
-      dispatch(login({ email }));
+    try {
+      console.log('Email:', email);
+      console.log('Password:', password);
+
+      const response = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Login error:', errorData);
+        throw new Error(errorData.message || 'Invalid credentials');
+      }
+      const result = await response.json();
+
+      dispatch(login({ email: result.user.email })); // Store the email or any identifier in the Redux state
       navigate('/dashboard'); // Redirect to the dashboard
-    } else {
+    } catch (error) {
+      console.error('Error during login:', error);
       alert('Invalid credentials');
     }
   };

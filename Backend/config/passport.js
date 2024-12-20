@@ -1,40 +1,46 @@
+const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcryptjs');
-const User = require('../models/User.js'); 
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
-module.exports = (passport) => {
-  passport.use(
-    new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
-      try {
-        // to find user by email
-        const user = await User.findOne({ email });
-        if (!user) {
-          return done(null, false, { message: 'No user found with that email' });
-        }
+// Configure Passport local strategy
+passport.use(new LocalStrategy({
+  usernameField: 'email', 
+  passwordField: 'password', 
+}, async (email, password, done) => {
+  try {
+    const user = await User.findOne({ email });
+    console.log('User Found:', user);
 
-        // To check password
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (isMatch) {
-          return done(null, user);
-        } else {
-          return done(null, false, { message: 'Incorrect password' });
-        }
-      } catch (err) {
-        return done(err);
-      }
-    })
-  );
-
-  passport.serializeUser((user, done) => {
-    done(null, user.id);
-  });
-
-  passport.deserializeUser(async (id, done) => {
-    try {
-      const user = await User.findById(id);
-      done(null, user);
-    } catch (err) {
-      done(err);
+    if (!user) {
+      return done(null, false, { message: 'Invalid credentials' });
     }
-  });
-};
+
+    // Compare password with the hashed password stored in the database
+    const isMatch = await bcrypt.compare(password, user.password);
+    console.log('Password Match:', isMatch);
+    if (!isMatch) {
+      return done(null, false, { message: 'Invalid credentials' });
+    }
+
+    return done(null, user); // Authentication successful
+  } catch (err) {
+    return done(err);
+  }
+}));
+
+
+// Serialize user (for sessions)
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// Deserialize user (retrieve from session)
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
