@@ -1,0 +1,28 @@
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  font-size: 0.9em;
+}
+
+.about-footer {
+  text-align: center;
+  padding: 10px;
+  color: #ffffff;
+}
+
+.rights-element{
+  padding: 10px;
+  color: rgb(232, 107, 23);
+}
+
+footer a {
+  color: #4caf50;
+  text-decoration: none;
+  padding: 30px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

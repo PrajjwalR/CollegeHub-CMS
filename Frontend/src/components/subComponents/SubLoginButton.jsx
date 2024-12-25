@@ -8,12 +8,20 @@ const SubLoginButton = () => {
       color="primary"
       aria-label="Basic button group"
     >
-      <Button component={Link} to="/login" className="custom-button">
-        Book a demo
+      <Button
+        component={Link}
+        to="/login"
+        className="custom-button first-button"
+      >
+        Book a demo or Get in touch with us
       </Button>
-      <Button component={Link} to="/signup" className="custom-button">
+      {/* <Button
+        component={Link}
+        to="/signup"
+        className="custom-button second-button"
+      >
         Get in touch with us
-      </Button>
+      </Button> */}
     </ButtonGroup>
   );
 };

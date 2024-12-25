@@ -9,60 +9,307 @@
   height: 100vh;
   margin: 0;
   padding: 0;
-   background-color: #f4f4f4;
+  background-color: #f4f4f4;
+  overflow: hidden;
 }
 
-.universityImg-container {
+
+/* HomeSubCompo1 */
+
+.main-home-sub-container1 {
+  background-image: url('https://images.unsplash.com/20/cambridge.JPG?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dW5pdmVyc2l0eXxlbnwwfHwwfHx8MA%3D%3D');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
   width: 100%;
-  height: 90%;
+  height: 100vh;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
 }
 
-.universityMain-img {
-  width: 100%;
-  height:100%;
-}
-.slider-image-container {
-  width: 100vw;
-  height: 85vh;
-  /* overflow: hidden;  */
-  position: relative;
+.main-content-home-container1 {
+  text-align: center; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  padding: 20px;
+  border-radius: 10px;
+  color: white; 
 }
 
-.slider-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-}
-.universityMain-images-slideshow {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; 
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 
-.button-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2; 
-}
-
-
-
-/* SubLoginButton.css */
-
-.custom-button {
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
   background-color: #ff9800;
   color: white;
-  padding: 0.6rem 1.5rem;
+  text-decoration: none;
+  border-radius: 5px;
   font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
-.custom-button:hover {
+.cta-button:hover {
   background-color: #f57c00;
+}
+
+/* Sub Component 2 */
+
+/* Main container */
+.home-sub-main-container2 {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Features Section */
+.features-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.feature-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #34495e;
+}
+
+.feature-item p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Call-to-Action Section */
+.cta-section {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.cta-section p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #3498db;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #2980b9;
   transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .features-section h2,
+  .cta-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .feature-item h3 {
+    font-size: 1.3rem;
+  }
+
+  .feature-item p,
+  .cta-section p {
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    font-size: 0.9rem;
+    padding: 0.7rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-section h2,
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .feature-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .feature-item p,
+  .cta-section p {
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+
+/* Sub Home Compo 3 */
+
+
+.home-sub-main-container3 {
+  padding: 2rem;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Testimonials Section */
+.testimonials-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.testimonials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.testimonial-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.testimonial-item p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.testimonial-item h4 {
+  font-size: 1.2rem;
+  color: #34495e;
+  margin: 0;
+}
+
+/* Gallery Section */
+.gallery-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 1.5rem;
+}
+
+.gallery img {
+  width: 100%; 
+  height: 200px; 
+  object-fit: cover; 
+  border-radius: 12px; 
+  border: 2px solid #ddd; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.gallery img:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+
+/* Spotlight Section */
+.spotlight-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.spotlight {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.spotlight-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.spotlight-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #34495e;
+}
+
+.spotlight-item p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.learn-more-button {
+  display: block;
+  margin: 2rem auto 0;
+  text-align: center;
+  width: fit-content;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #3498db;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more-button:hover {
+  background-color: #2980b9;
 }

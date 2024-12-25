@@ -9,39 +9,43 @@ import NoMatch from './components/NoMatch';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './components/Dashboard.jsx';
 import Profile from './components/Profile.jsx';
+import Footer from './components/Footer.jsx';
+import './CSS/AppMain.css';
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home></Home>} />
-        <Route path="/about" element={<About></About>} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="*" element={<NoMatch />} />
-        
-        {/* Protected Route */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<NoMatch />} />
-      </Routes>
-    </Router>
+    <div className="app-main-container">
+      <Router>
+        <Navbar />
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="*" element={<NoMatch />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 

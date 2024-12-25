@@ -1,27 +1,18 @@
 import '../CSS/Home.css';
-import { Container, Box } from '@mui/material';
-import ImageSlider from './ImageSlider';
-import SubLoginButton from '../components/subComponents/SubLoginButton';
+// import SubLoginButton from '../components/subComponents/SubLoginButton';
+import HomeSubCompo1 from './subComponents/HomeSubCompo1';
+import HomeSubCompo2 from './subComponents/HomeSubCompo2';
+import HomeSubCompo3 from './subComponents/HomeSubCompo3';
 
 function Home() {
   return (
-    <div className="main-container">
-      <Container
-        className="universityImg-container"
-        maxWidth={false}
-        disableGutters
-      >
-        <Box
-          className="slider-container"
-          sx={{ position: 'relative', height: '100vh' }}
-        >
-          <ImageSlider />
-          <Box className="button-overlay">
-            <SubLoginButton />
-          </Box>
-        </Box>
-      </Container>
-    </div>
+    <>
+      <div className="main-container">
+        <HomeSubCompo1></HomeSubCompo1>
+      </div>
+      <HomeSubCompo2></HomeSubCompo2>
+      <HomeSubCompo3></HomeSubCompo3>
+    </>
   );
 }
 
