@@ -6,13 +6,13 @@ import HomeSubCompo3 from './subComponents/HomeSubCompo3';
 
 function Home() {
   return (
-    <>
+    <div className="home-main-container">
       <div className="main-container">
         <HomeSubCompo1></HomeSubCompo1>
       </div>
       <HomeSubCompo2></HomeSubCompo2>
       <HomeSubCompo3></HomeSubCompo3>
-    </>
+    </div>
   );
 }
 

@@ -1,13 +1,20 @@
-/* .app-main-container{
+.app-main-container{
     display: flex;
   flex-direction: column;
   min-height: 100vh;
-} */
+  margin: 0;
+  padding: 0;
+}
 
-/* .main-content {
+.app-main-nav-compo{
+    position: fixed;
+}
+
+.main-content {
   flex: 1;
-} */
+  margin: 0;padding: 0;
+}
 
-/* footer {
+.footer-inApp-container {
   margin-top: auto; 
-} */
+}

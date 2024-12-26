@@ -101,6 +101,17 @@ const Signup = () => {
             required
           />
         </div>
+        <div>
+          <label>Role:</label>
+          <input
+            type="role"
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            required
+            placeholder="Student"
+          />
+        </div>
         <button type="submit">Sign Up</button>
       </form>
     </div>

@@ -2,8 +2,10 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../features/authSlice';
 import '../CSS/Navbar.css';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
 
@@ -11,8 +13,25 @@ const Navbar = () => {
     dispatch(logout());
   };
 
+  const handleScroll = () => {
+    const scrollTop = window.scrollY;
+    if (scrollTop > 50) {
+      setScrolled(true);
+      // console.log('Yes');
+    } else {
+      setScrolled(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <h2>
         <NavLink to="/" className="main-logo">
           CollegeHUB

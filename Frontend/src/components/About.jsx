@@ -1,4 +1,6 @@
 import React from 'react';
+// import HomeSubCompoScrollablePhotos from './subComponents/HomeSubCompoScrollablePhotos';
+import ImageSlider from './ImageSlider';
 import '../CSS/About.css';
 
 function About() {
@@ -6,7 +8,10 @@ function About() {
     <div className="about-container">
       <header>
         <h1>About CollegeHUB</h1>
+
+        {/* <HomeSubCompoScrollablePhotos></HomeSubCompoScrollablePhotos> */}
       </header>
+      <ImageSlider></ImageSlider>
 
       <section className="about-section">
         <h2>Our Mission</h2>

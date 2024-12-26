@@ -3,6 +3,12 @@
 
 
 /* Home compo */
+/* .home-main-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+} */
 
 .main-container {
   width: 100%;
@@ -192,6 +198,7 @@
   padding: 2rem;
   background-color: #ffffff;
   color: #333;
+  margin-bottom: 1rem;
 }
 
 /* Testimonials Section */

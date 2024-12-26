@@ -7,12 +7,20 @@
   color: #ecf0f1;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0; 
+  z-index: 1000; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; 
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  /* opacity: 0.6; */
+}
 
-  position: sticky; /* Makes the element stick to its position */
-  top: 0; /* Sticks to the top of the viewport */
-  z-index: 1000; /* Ensures it stays above other elements */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
-  width: 100%; /
+nav.navbar.scrolled  {
+ background-color: rgb(60, 60, 60); 
+  opacity: 0.7; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
 .navbar .main-logo {

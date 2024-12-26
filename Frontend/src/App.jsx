@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="app-main-container">
       <Router>
-        <Navbar />
+        <Navbar className='app-main-nav-compo'/>
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -43,7 +43,7 @@ function App() {
             />
           </Routes>
         </div>
-        <Footer />
+        <Footer className="footer-inApp-container"/>
       </Router>
     </div>
   );

@@ -12,8 +12,12 @@ function Footer() {
         &copy; 2024 collegeHUB. All rights reserved.
       </p>
       <div className="footer-links">
-        <Link to="/privacy">Privacy Policy</Link>
-        <Link to="/terms">Terms of Service</Link>
+        <Link to="/privacy" className="footer-links-a">
+          Privacy Policy
+        </Link>
+        <Link to="/terms" className="footer-links-a">
+          Terms of Service
+        </Link>
       </div>
     </footer>
   );
